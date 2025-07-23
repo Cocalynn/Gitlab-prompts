@@ -1,15 +1,26 @@
 {
   "manifest_version": 3,
   "name": "Coding Prompts Templates",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Quickly copy AI prompt templates.",
+  "permissions": [
+    "storage",
+    "clipboardWrite"
+  ],
   "action": {
     "default_icon": {
       "16": "icons/icon16.png",
-      "48": "icons/icon48.png", 
+      "48": "icons/icon48.png",
       "128": "icons/icon128.png"
     },
     "default_popup": "popup.html"
   },
-  "permissions": ["storage", "clipboardWrite"]
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  }
 }
+
