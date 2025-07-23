@@ -2,16 +2,26 @@
   {
     "id": "mr_review_summary",
     "title": "MR Review: Summary & Issues",
-    "template": "Summarize the key changes in this merge request and highlight any potential problems."
+    "template": "Summarize the key changes in this merge request #<paste MR diff here> and highlight any potential problems."
   },
   {
     "id": "code_explain",
     "title": "Explain Code",
-    "template": "Explain what the following code does, line by line:\n```<paste code here>```"
+    "template": "Explain what the following code does, line by line:\n#<paste code here>"
   },
   {
     "id": "pipeline_debug",
     "title": "CI/CD Pipeline Help",
-    "template": "I have this `.gitlab-ci.yml`: ```<paste here>```. My pipeline fails at stage X—why, and how to fix?"
+    "template": "I have this `.gitlab-ci.yml`: #<paste your .gitlab-ci.yml here>. My pipeline fails at stage #<stage-name> — why, and how to fix?"
+  },
+  {
+    "id": "linux_terminal",
+    "title": "Linux Terminal",
+    "template": "I want you to act as a linux terminal. I will type commands and you will reply with what the terminal should show. I want you to only reply with the terminal output inside one unique code block, and nothing else. do not write explanations. do not type commands unless I instruct you to do so. When I need to tell you something in English, I will do so by putting text inside curly brackets {like this}. My first command is #<command>"
+  },
+  {
+    "id": "detailed_debug_analysis",
+    "title": "Detailed Code Debug & Analysis",
+    "template": "I am currently working on some code that I need assistance with. Below is all the relative information. Analyze the information and help me identify the details of the problem I am having and how to find a solution for it.\n\nPrimary Objective: #<clearly state the primary goal or problem you’re trying to solve with your code>\nCoding Language Specifics: #<enter specifics>\nLanguage Used: #<specify the programming language>\nLanguage Version: #<mention the version if applicable>\nSoftware and Tools: #<software and tools>\nDevelopment Environment: #<name the IDE or text editor you’re using>\nAdditional Tools: #<additional tools>\nDevice and System Information: #<enter info>\nOperating System: #<mention the operating system>\nDevice Specifications: #<provide details about your device>\nProblem Description: #<enter description>\nError Messages/Issues: #<detail any error messages you’re encountering or specific issues>\nCode Snippets: #<include relevant snippets of your code>\nTroubleshooting Done: #<describe any troubleshooting steps you’ve already taken>\nResearch Conducted: #<mention any research you’ve done>\nSeeking Specific Help With: #<list your detailed questions here, being as specific as possible about what you need help with>\nDesired Outcome: #<describe what a successful resolution or outcome would look like for you>"
   }
 ]

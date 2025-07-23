@@ -1,9 +1,38 @@
 body {
   font-family: sans-serif;
-  width: 300px;
+  font-size: 12px;
+  line-height: 1.5;
+  width: 500px;
   padding: 10px;
 }
-select, textarea, button {
+
+select, button {
   width: 100%;
   margin-top: 8px;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* replaced textarea styles, since we're using <pre> for prompt output */
+.prompt-output {
+  font-family: Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.8rem;         
+  line-height: 1;
+  padding: 10px;
+  background: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  max-height: 200px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin-top: 8px;
+}
+
+.prompt-output .placeholder {
+  padding: 2px 4px;
+  border-radius: 3px;
+  color: #000;               /* keep text dark for contrast */
+  display: inline-block;     /* shrink‑to‑fit */
+  margin: 0 1px;             /* slight spacing */
 }
