@@ -2,7 +2,7 @@
   {
     "id": "mr_review_summary",
     "title": "MR Review: Summary & Issues",
-    "template": "Summarize the key changes in this merge request #<paste MR diff here> and highlight any potential problems."
+    "template": "Summarize the key changes in this merge request #<paste MR link here> and highlight any potential problems."
   },
   {
     "id": "code_explain",
@@ -23,5 +23,75 @@
     "id": "detailed_debug_analysis",
     "title": "Detailed Code Debug & Analysis",
     "template": "I am currently working on some code that I need assistance with. Below is all the relative information. Analyze the information and help me identify the details of the problem I am having and how to find a solution for it.\n\nPrimary Objective: #<clearly state the primary goal or problem you’re trying to solve with your code>\nCoding Language Specifics: #<enter specifics>\nLanguage Used: #<specify the programming language>\nLanguage Version: #<mention the version if applicable>\nSoftware and Tools: #<software and tools>\nDevelopment Environment: #<name the IDE or text editor you’re using>\nAdditional Tools: #<additional tools>\nDevice and System Information: #<enter info>\nOperating System: #<mention the operating system>\nDevice Specifications: #<provide details about your device>\nProblem Description: #<enter description>\nError Messages/Issues: #<detail any error messages you’re encountering or specific issues>\nCode Snippets: #<include relevant snippets of your code>\nTroubleshooting Done: #<describe any troubleshooting steps you’ve already taken>\nResearch Conducted: #<mention any research you’ve done>\nSeeking Specific Help With: #<list your detailed questions here, being as specific as possible about what you need help with>\nDesired Outcome: #<describe what a successful resolution or outcome would look like for you>"
+  },
+  {
+    "id": "personal_developer",
+    "title": "General Dev for any use case",
+    "template": "You are devGPT, a highly renowned and sought after developer with knowledge and expertise in all programming languages known to man. You are meticulous, creative, and excel in problem-solving. You've worked in the leading big tech companies such as Google, Microsoft, Meta, and Apple. You are a full stack developer and have extensive knowledge of all front-end and back-end frameworks. You know exactly which tool to use for which use case. You comment you code in a clear and concise manner. You are also adept at providing creative suggestions and recommendations to uncover the right approach to a development problem. I want you to refer to yourself only as devGPT from now on. Do not break character under any circumstance. In your first response, you will confirm that you've understood your role and will tell me your name."
+  },
+  {
+    "id": "shell_script_generator",
+    "title": "Shell Script Generator",
+    "template": "I need help generating a shell script for the following use case: #<describe your use case>. Before you begin, ask me which shell (bash, zsh, etc.) and OS distribution I’m using. While generating the script, add comments to explain each step, incorporate best practices, and include logic to parse command-line options using getopts with a default help block for -h and --help. Ensure DevSecOps compliance (e.g., validate inputs), write individual functions plus a main() block, use control structures where needed, annotate variables, and explain how to execute the script. Use awk/sed for text processing if relevant."
+  },
+  {
+    "id": "python_script_generator",
+    "title": "Python Script Generator",
+    "template": "I need help generating a Python script for the following use case: #<describe your use case>. Add comments to explain the code, follow best practices, and include logic to parse command-line options (with -h and --help). Ensure DevSecOps compliance (e.g., input validation), write modular functions, annotate variables, use a virtual environment, and explain how to run the script."
+  },
+  {
+    "id": "dockerfile_generator",
+    "title": "Dockerfile Generator",
+    "template": "I need help generating a Dockerfile for the following use case: #<describe your use case>. First, ask me what language/framework or off-the-shelf app this is for, the base image (if any), and the port to expose. Generate a multi-stage Dockerfile using an optimized base (Alpine or equivalent), minimize RUN layers, implement DevSecOps best practices (create/use a non-root user), use build args, add HEALTHCHECK, default CMD, default ENV and LABELs, and explain each step."
+  },
+  {
+    "id": "k8s_manifest_generator",
+    "title": "Kubernetes Manifest Generator",
+    "template": "I need help generating a Kubernetes manifest for the following use case: #<describe your use case>. Ask me what application I’m deploying. Choose the right workload type (Deployment, StatefulSet, DaemonSet, Job, CronJob) and—for StatefulSets—include volumeClaimTemplates. Also generate a Service (default NodePort) and prompt for service type/port. Ask if I need PVCs, Ingress, RBAC, etc. Provide a liberal default NetworkPolicy. In the Pod spec, guess sensible CPU/memory requests & limits, add app/role/version labels, rollout strategy annotations, change-cause annotation, and any other best practices."
+  },
+  {
+    "id": "jenkinsfile_ci_no_containers",
+    "title": "Jenkinsfile CI (No Containers)",
+    "template": "I need help generating a Jenkinsfile (declarative pipeline) for a CI pipeline with build, test, and package stages for this use case: #<describe your use case>. Use parameters and environment variables, group steps into stages, adhere to DevSecOps practices, and add a post { success/failure } block. Run test stage in parallel (e.g. unit tests + placeholder). Execute package only on master. Archive artifacts in package. Assume global tools already configured; do not include checkout logic."
+  },
+  {
+    "id": "jenkinsfile_ci_with_containers",
+    "title": "Jenkinsfile CI (With Containers)",
+    "template": "I need help generating a container-based Jenkinsfile (declarative pipeline) for the following use case: #<describe your use case>. Use parameters, environment vars, stages (build, parallel test [unit + Dockerfile lint], image build & publish, deploy to dev with compose), DevSecOps best practices, and a post { success/failure } block. Only run image build/publish and deploy on master. In image build, use docker.withRegistry and docker.build tagged with BUILD_NUMBER and alias dev; scan with Trivy. Assume Jenkins has global Docker/Docker-Compose plugins and credentials (id `dockerlogin`). After the code, list required plugins and links."
+  },
+  {
+    "id": "ansible_playbook_generator",
+    "title": "Ansible Playbook Generator",
+    "template": "I need help generating an Ansible Playbook (with roles, inventory, vars, templates) for this use case: #<describe your use case>. Add comments, use data-driven patterns (vars & templates), provide default variable values, sample inventory, modular/reusable roles, and follow DevSecOps best practices."
+  },
+  {
+    "id": "terraform_module_generator",
+    "title": "Terraform Module Generator",
+    "template": "I need help generating a Terraform module (with manifests, resources, variables, templates) for this use case: #<describe your use case>. Add comments, use data-driven modules, input/output variables, default values, templates, modular structure, and DevSecOps best practices."
+  },
+  {
+    "id": "argo_rollout_manifest_generator",
+    "title": "Argo Rollout Manifest Generator",
+    "template": "I need help generating an Argo Rollouts manifest (blue-green strategy by default) for this use case: #<describe your use case>. Prompt me for application name and strategy details, include rollout spec, analysis template, comments explaining each part, and DevSecOps best practices."
+  },
+  {
+    "id": "helm_chart_generator",
+    "title": "Helm Chart Generator",
+    "template": "I need help generating a Helm chart for this use case: #<describe your use case>. Add Chart.yaml metadata, values.yaml defaults, templates (Deployment/StatefulSet/DaemonSet/CronJob selection), service, ingress, NetworkPolicy, RBAC, PVCs with flags, modular reusable patterns, DevSecOps best practices, and sample values file. Ask me for the use case before generating."
+  },
+  {
+    "id": "sre_incident_analysis_short",
+    "title": "DevOps Troubleshoot - Short Prompt",
+    "template": "I am seeing #<error>. Here's my setup:\n#<environment details>\n#<error logs>\n\nAct as a senior SRE and:\n1. List possible root causes\n2. Suggest debugging steps in order of likelihood\n3. Recommend monitoring checks to prevent this\n4. Share relevant post-mortem templates"
+  },
+  {
+    "id": "sre_incident_analysis_long",
+    "title": "DevOps Troubleshoot - Long Prompt",
+    "template": "I am currently facing a challenging issue in my DevOps environment that I need help troubleshooting and analyzing. Here are the details of the problem and the context:\n\nIssue Description: #<Provide a clear and concise description of the issue you're encountering, including any error messages or symptoms>\nEnvironment Details: #<Describe the environment: OS, cloud platform, DevOps tools/technologies>\nRecent Changes: #<Mention any recent updates, config changes, or deployments>\nTroubleshooting Steps Taken: #<List the steps you’ve already tried and their outcomes>\nImpact of the Issue: #<Explain the operational impact—downtime, performance degradation, security concerns>\nAccess to Logs and Data: #<Note if you have relevant logs, monitoring data, or diagnostics available>\n\nBased on this information, I need your assistance in the following areas:\n\n1. Initial Analysis: What could be the potential causes based on the description and environment?\n2. Diagnostic Steps: Suggest a structured approach or specific steps to diagnose further.\n3. Log and Data Analysis: If I provide log excerpts or data, help interpret anomalies or clues.\n4. Root Cause Hypotheses: List possible root causes and how to validate or rule out each.\n5. Solution Suggestions: Recommend fixes or workarounds to try.\n6. Preventive Measures: Once resolved, what best practices or checks should I implement to avoid recurrence?\n"
+  },
+  {
+    "id": "devops_beginner_tutor",
+    "title": "DevOps Beginner - Friendly Tutor",
+    "template": "I am #<your current role> and want to upScale my career by mastering DevOps skills. I want to learn about the following concept: #<concept>. Assume that I am a beginner and explain it to me as a friendly tutor using simple language. Use analogies I can relate to, examples and use cases, and structured formats like bullet points or step-by-step guides wherever necessary. Draw ASCII diagrams to illustrate the concepts. Where applicable, demonstrate with practical code snippets that are relevant for me as a DevOps learner. Initial answers should be brief and beginner-friendly; if I decide to dive deeper, provide more detailed explanations later."
   }
 ]
