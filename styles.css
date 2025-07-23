@@ -1,0 +1,9 @@
+body {
+  font-family: sans-serif;
+  width: 300px;
+  padding: 10px;
+}
+select, textarea, button {
+  width: 100%;
+  margin-top: 8px;
+}

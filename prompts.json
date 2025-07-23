@@ -1,0 +1,18 @@
+[
+  {
+    "id": "mr_review_summary",
+    "title": "MR Review: Summary & Issues",
+    "template": "Summarize the key changes in this merge request and highlight any potential problems."
+  },
+  {
+    "id": "code_explain",
+    "title": "Explain Code",
+    "template": "Explain what the following code does, line by line:\n```<paste code here>```"
+  },
+  {
+    "id": "pipeline_debug",
+    "title": "CI/CD Pipeline Help",
+    "template": "I have this `.gitlab-ci.yml`: ```<paste here>```. My pipeline fails at stage X—why, and how to fix?"
+  }
+  /* …add more entries… */
+]
