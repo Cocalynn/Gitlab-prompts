@@ -1,15 +1,14 @@
 chrome.runtime.onInstalled.addListener(async details => {
-  console.log('💡 background.js onInstalled:', details);
-  if (details.reason === 'install' || details.reason === 'update') {
+  if (details.reason === 'install') {
     try {
       const url = chrome.runtime.getURL('prompts.json');
-      console.log('Fetching defaults from:', url);
       const resp = await fetch(url);
       const defaults = await resp.json();
-      console.log('Seeding chrome.storage.sync with', defaults.length, 'prompts');
-      await chrome.storage.sync.set({ prompts: defaults });
+      // Store defaults in local (larger quota)
+      await chrome.storage.local.set({ defaultPrompts: defaults });
     } catch (err) {
-      console.error('Error seeding defaults:', err);
+      console.error('Error seeding defaults into local:', err);
     }
   }
 });
+

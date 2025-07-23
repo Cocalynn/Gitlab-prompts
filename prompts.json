@@ -1,83 +1,53 @@
 [
   {
-    "id": "mr_review_summary",
-    "title": "MR Review: Summary & Issues",
-    "template": "Summarize the key changes in this merge request #<paste MR link here> and highlight any potential problems."
+    "id": "personal_developer",
+    "title": "General - Dev for any use case",
+    "template": "You are devGPT, a highly renowned and sought after developer with knowledge and expertise in all programming languages known to man. You are meticulous, creative, and excel in problem-solving. You've worked in the leading big tech companies such as Google, Microsoft, Meta, and Apple. You are a full stack developer and have extensive knowledge of all front-end and back-end frameworks. You know exactly which tool to use for which use case. You comment you code in a clear and concise manner. You are also adept at providing creative suggestions and recommendations to uncover the right approach to a development problem. I want you to refer to yourself only as devGPT from now on. Do not break character under any circumstance. In your first response, you will confirm that you've understood your role and will tell me your name."
   },
   {
-    "id": "code_explain",
-    "title": "Explain Code",
-    "template": "Explain what the following code does, line by line:\n#<paste code here>"
+    "id": "code_review",
+    "title": "General - Code Review ",
+    "template": "Please review the following code:\n#<paste your code>\n\nConsider:\n1. Code quality and adherence to best practices\n2. Potential bugs or edge cases\n3. Performance optimizations\n4. Readability and maintainability\n5. Any security concerns\n\nSuggest improvements and explain your reasoning for each suggestion."
   },
   {
-    "id": "pipeline_debug",
-    "title": "CI/CD Pipeline Help",
-    "template": "I have this `.gitlab-ci.yml`: #<paste your .gitlab-ci.yml here>. My pipeline fails at stage #<stage-name> — why, and how to fix?"
+    "id": "detailed_debug_analysis",
+    "title": "General - Detailed Code Debug & Analysis",
+    "template": "I am currently working on some code that I need assistance with. Below is all the relative information. Analyze the information and help me identify the details of the problem I am having and how to find a solution for it.\n\nPrimary Objective: #<clearly state the primary goal or problem you’re trying to solve with your code>\nCoding Language Specifics: #<enter specifics>\nLanguage Used: #<specify the programming language>\nLanguage Version: #<mention the version if applicable>\nSoftware and Tools: #<software and tools>\nDevelopment Environment: #<name the IDE or text editor you’re using>\nAdditional Tools: #<additional tools>\nDevice and System Information: #<enter info>\nOperating System: #<mention the operating system>\nDevice Specifications: #<provide details about your device>\nProblem Description: #<enter description>\nError Messages/Issues: #<detail any error messages you’re encountering or specific issues>\nCode Snippets: #<include relevant snippets of your code>\nTroubleshooting Done: #<describe any troubleshooting steps you’ve already taken>\nResearch Conducted: #<mention any research you’ve done>\nSeeking Specific Help With: #<list your detailed questions here, being as specific as possible about what you need help with>\nDesired Outcome: #<describe what a successful resolution or outcome would look like for you>"
+  },
+  {
+    "id": "shell_script_generator",
+    "title": "Script Generator - Shell",
+    "template": "I need help generating a shell script for the following use case: #<describe your use case>. Before you begin, ask me which shell (bash, zsh, etc.) and OS distribution I’m using. While generating the script, add comments to explain each step, incorporate best practices, and include logic to parse command-line options using getopts with a default help block for -h and --help. Ensure DevSecOps compliance (e.g., validate inputs), write individual functions plus a main() block, use control structures where needed, annotate variables, and explain how to execute the script. Use awk/sed for text processing if relevant."
+  },
+  {
+    "id": "python_script_generator",
+    "title": "Script Generator - Python",
+    "template": "I need help generating a Python script for the following use case: #<describe your use case>. Add comments to explain the code, follow best practices, and include logic to parse command-line options (with -h and --help). Ensure DevSecOps compliance (e.g., input validation), write modular functions, annotate variables, use a virtual environment, and explain how to run the script."
+  },
+  {
+    "id": "dockerfile_generator",
+    "title": "Script Generator - Dockerfile",
+    "template": "I need help generating a Dockerfile for the following use case: #<describe your use case>. First, ask me what language/framework or off-the-shelf app this is for, the base image (if any), and the port to expose. Generate a multi-stage Dockerfile using an optimized base (Alpine or equivalent), minimize RUN layers, implement DevSecOps best practices (create/use a non-root user), use build args, add HEALTHCHECK, default CMD, default ENV and LABELs, and explain each step."
+  },
+  {
+    "id": "k8s_manifest_generator",
+    "title": "Script Generator - Kubernetes Manifest",
+    "template": "I need help generating a Kubernetes manifest for the following use case: #<describe your use case>. Ask me what application I’m deploying. Choose the right workload type (Deployment, StatefulSet, DaemonSet, Job, CronJob) and—for StatefulSets—include volumeClaimTemplates. Also generate a Service (default NodePort) and prompt for service type/port. Ask if I need PVCs, Ingress, RBAC, etc. Provide a liberal default NetworkPolicy. In the Pod spec, guess sensible CPU/memory requests & limits, add app/role/version labels, rollout strategy annotations, change-cause annotation, and any other best practices."
+  },
+  {
+    "id": "terraform_module_generator",
+    "title": "Script Generator - Terraform Module",
+    "template": "I need help generating a Terraform module (with manifests, resources, variables, templates) for this use case: #<describe your use case>. Add comments, use data-driven modules, input/output variables, default values, templates, modular structure, and DevSecOps best practices."
+  },
+  {
+    "id": "helm_chart_generator",
+    "title": "Script Generator - Helm Chart",
+    "template": "I need help generating a Helm chart for this use case: #<describe your use case>. Add Chart.yaml metadata, values.yaml defaults, templates (Deployment/StatefulSet/DaemonSet/CronJob selection), service, ingress, NetworkPolicy, RBAC, PVCs with flags, modular reusable patterns, DevSecOps best practices, and sample values file. Ask me for the use case before generating."
   },
   {
     "id": "linux_terminal",
     "title": "Linux Terminal",
     "template": "I want you to act as a linux terminal. I will type commands and you will reply with what the terminal should show. I want you to only reply with the terminal output inside one unique code block, and nothing else. do not write explanations. do not type commands unless I instruct you to do so. When I need to tell you something in English, I will do so by putting text inside curly brackets {like this}. My first command is #<command>"
-  },
-  {
-    "id": "detailed_debug_analysis",
-    "title": "Detailed Code Debug & Analysis",
-    "template": "I am currently working on some code that I need assistance with. Below is all the relative information. Analyze the information and help me identify the details of the problem I am having and how to find a solution for it.\n\nPrimary Objective: #<clearly state the primary goal or problem you’re trying to solve with your code>\nCoding Language Specifics: #<enter specifics>\nLanguage Used: #<specify the programming language>\nLanguage Version: #<mention the version if applicable>\nSoftware and Tools: #<software and tools>\nDevelopment Environment: #<name the IDE or text editor you’re using>\nAdditional Tools: #<additional tools>\nDevice and System Information: #<enter info>\nOperating System: #<mention the operating system>\nDevice Specifications: #<provide details about your device>\nProblem Description: #<enter description>\nError Messages/Issues: #<detail any error messages you’re encountering or specific issues>\nCode Snippets: #<include relevant snippets of your code>\nTroubleshooting Done: #<describe any troubleshooting steps you’ve already taken>\nResearch Conducted: #<mention any research you’ve done>\nSeeking Specific Help With: #<list your detailed questions here, being as specific as possible about what you need help with>\nDesired Outcome: #<describe what a successful resolution or outcome would look like for you>"
-  },
-  {
-    "id": "personal_developer",
-    "title": "General Dev for any use case",
-    "template": "You are devGPT, a highly renowned and sought after developer with knowledge and expertise in all programming languages known to man. You are meticulous, creative, and excel in problem-solving. You've worked in the leading big tech companies such as Google, Microsoft, Meta, and Apple. You are a full stack developer and have extensive knowledge of all front-end and back-end frameworks. You know exactly which tool to use for which use case. You comment you code in a clear and concise manner. You are also adept at providing creative suggestions and recommendations to uncover the right approach to a development problem. I want you to refer to yourself only as devGPT from now on. Do not break character under any circumstance. In your first response, you will confirm that you've understood your role and will tell me your name."
-  },
-  {
-    "id": "shell_script_generator",
-    "title": "Shell Script Generator",
-    "template": "I need help generating a shell script for the following use case: #<describe your use case>. Before you begin, ask me which shell (bash, zsh, etc.) and OS distribution I’m using. While generating the script, add comments to explain each step, incorporate best practices, and include logic to parse command-line options using getopts with a default help block for -h and --help. Ensure DevSecOps compliance (e.g., validate inputs), write individual functions plus a main() block, use control structures where needed, annotate variables, and explain how to execute the script. Use awk/sed for text processing if relevant."
-  },
-  {
-    "id": "python_script_generator",
-    "title": "Python Script Generator",
-    "template": "I need help generating a Python script for the following use case: #<describe your use case>. Add comments to explain the code, follow best practices, and include logic to parse command-line options (with -h and --help). Ensure DevSecOps compliance (e.g., input validation), write modular functions, annotate variables, use a virtual environment, and explain how to run the script."
-  },
-  {
-    "id": "dockerfile_generator",
-    "title": "Dockerfile Generator",
-    "template": "I need help generating a Dockerfile for the following use case: #<describe your use case>. First, ask me what language/framework or off-the-shelf app this is for, the base image (if any), and the port to expose. Generate a multi-stage Dockerfile using an optimized base (Alpine or equivalent), minimize RUN layers, implement DevSecOps best practices (create/use a non-root user), use build args, add HEALTHCHECK, default CMD, default ENV and LABELs, and explain each step."
-  },
-  {
-    "id": "k8s_manifest_generator",
-    "title": "Kubernetes Manifest Generator",
-    "template": "I need help generating a Kubernetes manifest for the following use case: #<describe your use case>. Ask me what application I’m deploying. Choose the right workload type (Deployment, StatefulSet, DaemonSet, Job, CronJob) and—for StatefulSets—include volumeClaimTemplates. Also generate a Service (default NodePort) and prompt for service type/port. Ask if I need PVCs, Ingress, RBAC, etc. Provide a liberal default NetworkPolicy. In the Pod spec, guess sensible CPU/memory requests & limits, add app/role/version labels, rollout strategy annotations, change-cause annotation, and any other best practices."
-  },
-  {
-    "id": "jenkinsfile_ci_no_containers",
-    "title": "Jenkinsfile CI (No Containers)",
-    "template": "I need help generating a Jenkinsfile (declarative pipeline) for a CI pipeline with build, test, and package stages for this use case: #<describe your use case>. Use parameters and environment variables, group steps into stages, adhere to DevSecOps practices, and add a post { success/failure } block. Run test stage in parallel (e.g. unit tests + placeholder). Execute package only on master. Archive artifacts in package. Assume global tools already configured; do not include checkout logic."
-  },
-  {
-    "id": "jenkinsfile_ci_with_containers",
-    "title": "Jenkinsfile CI (With Containers)",
-    "template": "I need help generating a container-based Jenkinsfile (declarative pipeline) for the following use case: #<describe your use case>. Use parameters, environment vars, stages (build, parallel test [unit + Dockerfile lint], image build & publish, deploy to dev with compose), DevSecOps best practices, and a post { success/failure } block. Only run image build/publish and deploy on master. In image build, use docker.withRegistry and docker.build tagged with BUILD_NUMBER and alias dev; scan with Trivy. Assume Jenkins has global Docker/Docker-Compose plugins and credentials (id `dockerlogin`). After the code, list required plugins and links."
-  },
-  {
-    "id": "ansible_playbook_generator",
-    "title": "Ansible Playbook Generator",
-    "template": "I need help generating an Ansible Playbook (with roles, inventory, vars, templates) for this use case: #<describe your use case>. Add comments, use data-driven patterns (vars & templates), provide default variable values, sample inventory, modular/reusable roles, and follow DevSecOps best practices."
-  },
-  {
-    "id": "terraform_module_generator",
-    "title": "Terraform Module Generator",
-    "template": "I need help generating a Terraform module (with manifests, resources, variables, templates) for this use case: #<describe your use case>. Add comments, use data-driven modules, input/output variables, default values, templates, modular structure, and DevSecOps best practices."
-  },
-  {
-    "id": "argo_rollout_manifest_generator",
-    "title": "Argo Rollout Manifest Generator",
-    "template": "I need help generating an Argo Rollouts manifest (blue-green strategy by default) for this use case: #<describe your use case>. Prompt me for application name and strategy details, include rollout spec, analysis template, comments explaining each part, and DevSecOps best practices."
-  },
-  {
-    "id": "helm_chart_generator",
-    "title": "Helm Chart Generator",
-    "template": "I need help generating a Helm chart for this use case: #<describe your use case>. Add Chart.yaml metadata, values.yaml defaults, templates (Deployment/StatefulSet/DaemonSet/CronJob selection), service, ingress, NetworkPolicy, RBAC, PVCs with flags, modular reusable patterns, DevSecOps best practices, and sample values file. Ask me for the use case before generating."
   },
   {
     "id": "sre_incident_analysis_short",

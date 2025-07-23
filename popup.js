@@ -1,9 +1,9 @@
 // popup.js
 // A palette of background and foreground color pairs for placeholders
 const COLOR_PAIRS = [
-  { bg: '#BBDEFB', fg: '#0D47A1' },  
-  { bg: '#C8E6C9', fg: '#1B5E20' },  
-  { bg: '#FFE082', fg: '#FF8F00' }, 
+  { bg: '#BBDEFB', fg: '#0D47A1' },
+  { bg: '#C8E6C9', fg: '#1B5E20' },
+  { bg: '#FFE082', fg: '#FF8F00' },
   { bg: '#FFCCBC', fg: '#E64A19' },
   { bg: '#E1BEE7', fg: '#4A148C' },
   { bg: '#B2DFDB', fg: '#004D40' }
@@ -23,9 +23,7 @@ function escapeHTML(str) {
 
 // Highlight placeholders delimited by #<...> with colored background & contrasting text
 function highlightPlaceholders(text) {
-  // Split text into normal segments and placeholder tokens
   const parts = text.split(/(#<[^>]+>)/g);
-
   return parts.map(part => {
     if (/^#<[^>]+>$/.test(part)) {
       const { bg, fg } = getRandomPair();
@@ -36,53 +34,77 @@ function highlightPlaceholders(text) {
   }).join('');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+// Always fetch and cache defaults, then auto-reset and merge with user prompts
+async function loadPrompts() {
+  // 1. Fetch the latest defaults from bundled JSON
+  let defaultPrompts = [];
+  try {
+    const url = chrome.runtime.getURL('prompts.json');
+    const resp = await fetch(url);
+    defaultPrompts = await resp.json();
+    // Cache the latest defaults
+    await chrome.storage.local.set({ defaultPrompts });
+  } catch (err) {
+    console.error('Failed to fetch prompts.json:', err);
+    // Fallback to local cache
+    const local = await chrome.storage.local.get('defaultPrompts');
+    defaultPrompts = local.defaultPrompts || [];
+  }
+
+   // 2. Load any user‑modified or added prompts (don't reset them)
+  const { prompts: userPrompts = [] } = await chrome.storage.sync.get('prompts');
+
+  // 4. Merge defaults with user prompts (user takes precedence)
+  const merged = [...defaultPrompts];
+  for (const up of userPrompts) {
+    const idx = merged.findIndex(dp => dp.id === up.id);
+    if (idx > -1) merged[idx] = up;
+    else merged.push(up);
+  }
+  return merged;
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
   console.log('➡️ popup.js loaded');
   const select = document.getElementById('scenario-select');
-  const output = document.getElementById('prompt-text'); // now a <pre>
+  const output = document.getElementById('prompt-text');
   const copyBtn = document.getElementById('copy-btn');
   let currentTemplate = '';
 
   function render(prompts) {
-    console.log('Rendering', prompts.length, 'prompts');
+    if (!prompts.length) {
+      select.innerHTML = '<option disabled>No prompts available</option>';
+      return;
+    }
     select.innerHTML = [
       '<option disabled selected>Select a scenario…</option>',
       ...prompts.map(p => `<option value="${p.id}">${p.title}</option>`)
     ].join('');
+    // Auto‑select and render the first prompt
+    select.selectedIndex = 1;
     select.onchange = () => {
       const pick = prompts.find(p => p.id === select.value);
       currentTemplate = pick.template;
-      // Render with highlighted placeholders
       output.innerHTML = highlightPlaceholders(currentTemplate);
+      copyBtn.focus();
     };
+    select.onchange();
   }
 
-  chrome.storage.sync.get({ prompts: [] }, async ({ prompts }) => {
-    console.log('⚙️ storage.sync.get returned', prompts.length, 'prompts');
-    if (prompts.length) {
-      return render(prompts);
-    }
-    console.warn('No prompts found in storage; loading bundled defaults');
-    try {
-      const url = chrome.runtime.getURL('prompts.json');
-      console.log('Fetching fallback defaults from:', url);
-      const resp = await fetch(url);
-      const defaults = await resp.json();
-      console.log('Fallback loaded', defaults.length, 'prompts; seeding storage');
-      await chrome.storage.sync.set({ prompts: defaults });
-      render(defaults);
-    } catch (err) {
-      console.error('Failed to load prompts.json fallback:', err);
-      select.innerHTML = '<option disabled>Error loading prompts</option>';
-    }
-  });
+  try {
+    const prompts = await loadPrompts();
+    render(prompts);
+  } catch (err) {
+    console.error('Error loading prompts:', err);
+    select.innerHTML = `<option disabled>Error loading prompts: ${err.message}</option>`;
+  }
 
   copyBtn.addEventListener('click', () => {
-    // Copy raw template text to clipboard
     navigator.clipboard.writeText(currentTemplate)
       .then(() => {
         copyBtn.textContent = 'Copied!';
         setTimeout(() => (copyBtn.textContent = 'Copy to Clipboard'), 1500);
-      });
+      })
+      .catch(err => console.error('Copy failed:', err));
   });
 });

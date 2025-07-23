@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Coding Prompts Templates",
-  "version": "1.1.4",
-  "description": "Quickly copy AI prompt templates.",
+  "name": "DevOps Coding Prompts Templates",
+  "version": "1.0.0",
+  "description": "Quickly access and copy AI prompt templates tailored for DevOps workflows—Code reviews/explanations, scripts writing, debugging, and more. Easily add, edit, or remove your own custom templates via the Options page to fit your team’s needs.",
   "permissions": [
     "storage",
     "clipboardWrite"
