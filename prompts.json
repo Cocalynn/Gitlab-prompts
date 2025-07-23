@@ -14,5 +14,4 @@
     "title": "CI/CD Pipeline Help",
     "template": "I have this `.gitlab-ci.yml`: ```<paste here>```. My pipeline fails at stage X—why, and how to fix?"
   }
-  /* …add more entries… */
 ]
