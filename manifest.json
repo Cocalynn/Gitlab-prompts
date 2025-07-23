@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "GitLab Prompt Templates",
+  "name": "Coding Prompts Templates",
   "version": "1.0.0",
-  "description": "Quickly copy GitLab‑related AI prompt templates.",
+  "description": "Quickly copy AI prompt templates.",
   "action": {
     "default_icon": {
       "16": "icons/icon16.png",
